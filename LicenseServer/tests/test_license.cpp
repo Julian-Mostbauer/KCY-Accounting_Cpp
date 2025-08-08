@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "../../deps/catch.hpp"
 #include "../lib/License.h"
 
 TEST_CASE("License::fromString parses valid license string", "[license]") {

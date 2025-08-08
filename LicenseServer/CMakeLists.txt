@@ -16,7 +16,7 @@ add_executable(license_server
 add_executable(license_tests
         tests/test_license.cpp
         lib/License.cpp
-        tests/catch.cpp
+        ../deps/catch.cpp
 )
 
 target_include_directories(license_tests PRIVATE lib)
