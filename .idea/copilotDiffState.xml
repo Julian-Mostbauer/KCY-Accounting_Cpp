@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/CMakeLists.txt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/CMakeLists.txt" />
+              <option name="originalContent" value="cmake_minimum_required(VERSION 4.0)&#10;project(C_KCY_Accounting)&#10;&#10;set(CMAKE_CXX_STANDARD 14)&#10;&#10;include_directories(LicenseServer/include)&#10;&#10;add_executable(C_KCY_Accounting&#10;        LicenseServer/src/main.cpp&#10;        LicenseServer/lib/license.cpp&#10;        LicenseServer/lib/license.h&#10;)&#10;&#10;add_executable(license_tests&#10;        LicenseServer/tests/test_license.cpp&#10;        LicenseServer/lib/license.cpp&#10;)&#10;&#10;target_include_directories(license_tests PRIVATE LicenseServer/lib)" />
+              <option name="updatedContent" value="cmake_minimum_required(VERSION 4.0)&#10;project(C_KCY_Accounting)&#10;&#10;set(CMAKE_CXX_STANDARD 14)&#10;&#10;include_directories(LicenseServer/include)&#10;&#10;add_executable(C_KCY_Accounting&#10;        LicenseServer/src/main.cpp&#10;        LicenseServer/lib/license.cpp&#10;        LicenseServer/lib/license.h&#10;)&#10;&#10;add_executable(license_tests&#10;        LicenseServer/tests/test_license.cpp&#10;        LicenseServer/lib/license.cpp&#10;        LicenseServer/tests/catch.cpp&#10;)&#10;&#10;target_include_directories(license_tests PRIVATE LicenseServer/lib)" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LicenseServer/tests/test_license.cpp">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/LicenseServer/tests/test_license.cpp" />
+              <option name="updatedContent" value="#define CATCH_CONFIG_MAIN&#10;#include &quot;catch.hpp&quot;&#10;#include &quot;../lib/license.h&quot;&#10;&#10;TEST_CASE(&quot;License::fromString parses valid license string&quot;, &quot;[license]&quot;) {&#10;    std::string input = &quot;example;example;2;0;example_mac_1,example_mac_2&quot;;&#10;    License lic = License::fromString(input);&#10;    REQUIRE(lic.Name == &quot;example&quot;);&#10;    REQUIRE(lic.LicenseKey == &quot;example&quot;);&#10;    REQUIRE(lic.AllowedUsers == 2);&#10;    REQUIRE(lic.RedeemedUsers == 0);&#10;    REQUIRE(lic.AllowedMacs.size() == 2);&#10;    REQUIRE(lic.AllowedMacs[0] == &quot;example_mac_1&quot;);&#10;    REQUIRE(lic.AllowedMacs[1] == &quot;example_mac_2&quot;);&#10;}&#10;&#10;TEST_CASE(&quot;License::fromString handles empty AllowedMacs&quot;, &quot;[license]&quot;) {&#10;    std::string input = &quot;x;kxrim;2;0;&quot;;&#10;    License lic = License::fromString(input);&#10;    REQUIRE(lic.Name == &quot;x&quot;);&#10;    REQUIRE(lic.LicenseKey == &quot;kxrim&quot;);&#10;    REQUIRE(lic.AllowedUsers == 2);&#10;    REQUIRE(lic.RedeemedUsers == 0);&#10;    REQUIRE(lic.AllowedMacs.empty());&#10;}&#10;&#10;TEST_CASE(&quot;License::toString outputs correct format&quot;, &quot;[license]&quot;) {&#10;    License lic;&#10;    lic.Name = &quot;x&quot;;&#10;    lic.LicenseKey = &quot;kxrim&quot;;&#10;    lic.AllowedUsers = 2;&#10;    lic.RedeemedUsers = 0;&#10;    lic.AllowedMacs = {&quot;mac1&quot;, &quot;mac2&quot;};&#10;    std::string expected = &quot;x;kxrim;2;0;mac1,mac2&quot;;&#10;    REQUIRE(lic.toString() == expected);&#10;}&#10;&#10;TEST_CASE(&quot;License::fromString handles malformed input gracefully&quot;, &quot;[license]&quot;) {&#10;    std::string input = &quot;&quot;;&#10;    License lic = License::fromString(input);&#10;    // Should be default constructed&#10;    REQUIRE(lic.Name.empty());&#10;    REQUIRE(lic.LicenseKey.empty());&#10;    REQUIRE(lic.AllowedUsers == 0);&#10;    REQUIRE(lic.RedeemedUsers == 0);&#10;    REQUIRE(lic.AllowedMacs.empty());&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
